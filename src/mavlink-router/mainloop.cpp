@@ -169,7 +169,7 @@ void Mainloop::route_msg(struct buffer *buf, int target_sysid, int target_compid
     }
 
     for (auto i: dynamic_endpoints) {
-        if (i.second->accept_msg(target_sysid, target_compid, sender_sysid, sender_compid )) { //, msg_id)) {
+        if (i.second->accept_msg(target_sysid, target_compid, sender_sysid, sender_compid, msg_id)) {
             log_debug("Endpoint [%d] accepted message to %d/%d from %u/%u", i.second->fd, target_sysid,
                       target_compid, sender_sysid, sender_compid);
             write_msg(i.second, buf);
