@@ -1,0 +1,41 @@
+FROM openhd/2020-05-27-raspios-buster-lite-armhf:v1
+
+COPY .git /data/.git/
+COPY m4 /data/m4/
+COPY modules /data/modules/
+COPY src /data/src/
+COPY m4 /data/m4/
+COPY tests /data/tests/
+COPY tools /data/tools/
+COPY aclocal.m4 /data/
+COPY autogen.sh /data/
+COPY config.h.in /data/
+COPY configure /data/
+COPY configure.ac /data/
+COPY Makefile.am /data/
+COPY Makefile.in /data/
+COPY mavlink-router.service.in /data/
+
+COPY package.sh /data/
+
+RUN apt update
+
+RUN apt -y install git
+
+RUN apt -y install ruby-dev
+
+RUN apt -y install python-pip
+
+RUN apt -y purge python-configparser
+
+RUN gem install fpm
+
+RUN pip install cloudsmith-cli
+
+WORKDIR /data
+
+ARG CLOUDSMITH_API_KEY=000000000000
+
+RUN export CLOUDSMITH_API_KEY=$CLOUDSMITH_API_KEY
+
+RUN /data/package.sh pi buster
