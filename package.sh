@@ -10,6 +10,7 @@ if [[ "${PLATFORM}" == "pi" ]]; then
     PACKAGE_ARCH="armhf"
 fi
 
+apt -y install autoconf
 
 PACKAGE_NAME=mavlink-router
 
