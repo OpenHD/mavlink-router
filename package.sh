@@ -10,7 +10,7 @@ if [[ "${PLATFORM}" == "pi" ]]; then
     PACKAGE_ARCH="armhf"
 fi
 
-apt -y install autoconf libtool
+apt -y install autoconf libtool python3-future python-future
 
 PACKAGE_NAME=mavlink-router
 
