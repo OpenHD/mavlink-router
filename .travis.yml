@@ -1,25 +1,17 @@
 language: cpp
+os: linux
 dist: bionic
-cache: pip
-matrix:
+before_install:
+  - sudo docker run --privileged linuxkit/binfmt:v0.6
+  - sudo docker run --rm --privileged multiarch/qemu-user-static:register
+services:
+  - docker
+compiler:
+  - gcc
+jobs:
   include:
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-6
-            - gcc-6
-            - python3-pip
-            - python3-setuptools
-
-before_script:
-        - pip3 install --user future pymavlink
-        - CXX="g++-6"
-        - CC="gcc-6"
-
-script:
-        - ./autogen.sh c --with-systemdsystemunitdir=/usr/lib/systemd/system
-        - make -j
-        - make check PYTHON=python3
+  - name: "Pi stretch"
+    env: DOCKERFILE=Dockerfile-pi-stretch
+  - name: "Pi buster"
+    env: DOCKERFILE=Dockerfile-pi-buster
+script: docker build -f $DOCKERFILE --build-arg CLOUDSMITH_API_KEY=${CLOUDSMITH_API_KEY} .
