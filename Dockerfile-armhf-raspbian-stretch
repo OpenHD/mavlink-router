@@ -1,7 +1,5 @@
 FROM openhd/2018-10-09-raspbian-stretch-lite:v1  
 
-COPY . /data/
-
 RUN apt update
 
 RUN apt -y install git
@@ -15,6 +13,8 @@ RUN apt -y purge python-configparser
 RUN gem install fpm
 
 RUN pip install cloudsmith-cli
+
+COPY . /data/
 
 WORKDIR /data
 
