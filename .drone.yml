@@ -10,6 +10,7 @@ steps:
   commands:
   - apk add git
   - git fetch --tags
+  - git checkout openhd2.1
   - git submodule update --init --recursive --remote
 - name: build
   image: plugins/docker
@@ -35,6 +36,7 @@ steps:
   commands:
   - apk add git
   - git fetch --tags
+  - git checkout openhd2.1
   - git submodule update --init --recursive --remote
 - name: build
   image: plugins/docker
@@ -60,6 +62,7 @@ steps:
   commands:
   - apk add git
   - git fetch --tags
+  - git checkout openhd2.1
   - git submodule update --init --recursive --remote
 - name: build
   image: plugins/docker
@@ -85,6 +88,7 @@ steps:
   commands:
   - apk add git
   - git fetch --tags
+  - git checkout openhd2.1
   - git submodule update --init --recursive --remote
 - name: build
   image: plugins/docker
