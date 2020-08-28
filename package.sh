@@ -18,7 +18,7 @@ nameserver 8.8.4.4
 EOF
 fi
 
-apt -y install autoconf autoconf-archive libtool automake build-essential python3-future python-future libssl-dev 
+apt -y install pkg-config autoconf autoconf-archive libtool automake build-essential python3-future python-future libssl-dev 
 
 PACKAGE_NAME=mavlink-router
 
